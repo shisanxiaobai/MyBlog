@@ -1,0 +1,1341 @@
+basePath: /
+definitions:
+  model.ArtComment:
+    properties:
+      aid:
+        type: integer
+      content:
+        type: string
+      name:
+        type: string
+    type: object
+  model.Article:
+    properties:
+      cid:
+        type: integer
+      content:
+        example: content
+        type: string
+      desc:
+        example: desc
+        type: string
+      img:
+        example: img
+        type: string
+      read_ount:
+        type: integer
+      title:
+        example: title
+        type: string
+    type: object
+  model.Board:
+    properties:
+      content:
+        type: string
+      name:
+        type: string
+    type: object
+  model.Category:
+    properties:
+      name:
+        example: name
+        type: string
+    type: object
+  model.Life:
+    properties:
+      content:
+        type: string
+      desc:
+        type: string
+      img:
+        type: string
+      read_count:
+        type: integer
+      title:
+        type: string
+    type: object
+  model.LifeComment:
+    properties:
+      content:
+        type: string
+      lid:
+        type: integer
+      life:
+        $ref: '#/definitions/model.Life'
+        description: 关联Life，并将Lid重写为外键
+      name:
+        type: string
+    type: object
+  model.Project:
+    properties:
+      desc:
+        example: desc
+        type: string
+      img:
+        example: img
+        type: string
+      name:
+        example: name
+        type: string
+      url:
+        example: url
+        type: string
+    type: object
+  model.Reponse:
+    properties:
+      data: {}
+      msg:
+        type: string
+    type: object
+  model.User:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+host: localhost:8000
+info:
+  contact:
+    name: go-swagger帮助文档
+    url: https://github.com/swaggo/swag/blob/master/README_zh-CN.md
+  description: gin+gorm+jwt+cors+viper等等
+  license:
+    name: Apache 2.0
+  title: myblog gin+gorm
+  version: "1.0"
+paths:
+  /api/artcomment/{id}:
+    get:
+      consumes:
+      - application/json
+      description: 后台查看动态评论
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: 分页尺寸
+        in: query
+        name: pagesize
+        required: true
+        type: integer
+      - description: 页码
+        in: query
+        name: pagenum
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 后台查看动态评论列表
+      tags:
+      - ArtComment
+  /api/artcomment/list:
+    get:
+      consumes:
+      - application/json
+      description: 后台查看所有文章评论
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 查看所有文章评论
+      tags:
+      - ArtComment
+  /api/article/{id}:
+    get:
+      consumes:
+      - application/json
+      description: 前台查看文章内容
+      parameters:
+      - description: 要查看的id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 前台查看文章内容
+      tags:
+      - Article
+  /api/article/add:
+    post:
+      consumes:
+      - application/json
+      description: 后台添加一个文章
+      parameters:
+      - description: 添加文章
+        in: body
+        name: article
+        schema:
+          $ref: '#/definitions/model.Article'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 后台添加文章
+      tags:
+      - Article
+  /api/article/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: 后台删除一个文章
+      parameters:
+      - description: 要删除文章的id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 后台删除文章
+      tags:
+      - Article
+  /api/article/edit/{id}:
+    put:
+      consumes:
+      - application/json
+      description: 后台编辑一个动态
+      parameters:
+      - description: 要编辑分类的id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: 编辑分类
+        in: body
+        name: category
+        schema:
+          $ref: '#/definitions/model.Category'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 后台更新文章
+      tags:
+      - Article
+  /api/article/list:
+    get:
+      consumes:
+      - application/json
+      description: 查看文章列表
+      parameters:
+      - description: title
+        in: query
+        name: title
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 查看文章列表
+      tags:
+      - Article
+  /api/article/search:
+    get:
+      consumes:
+      - application/json
+      description: 根据标题检索文章
+      parameters:
+      - description: 文章标题
+        in: query
+        name: title
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 检索文章
+      tags:
+      - Article
+  /api/articlecate/{name}:
+    get:
+      consumes:
+      - application/json
+      description: 查看分类文章
+      parameters:
+      - description: 分类名字
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: 分页尺寸
+        in: query
+        name: pagesize
+        required: true
+        type: integer
+      - description: 页码
+        in: query
+        name: pagenum
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 前台查看分类文章
+      tags:
+      - Article
+  /api/board:
+    get:
+      consumes:
+      - application/json
+      description: 前台查看留言
+      parameters:
+      - description: 分页尺寸
+        in: query
+        name: pagesize
+        required: true
+        type: integer
+      - description: 页码
+        in: query
+        name: pagenum
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 前台查看留言
+      tags:
+      - Board
+  /api/board/add:
+    post:
+      consumes:
+      - application/json
+      description: 登录
+      parameters:
+      - description: 登录
+        in: body
+        name: login
+        required: true
+        schema:
+          $ref: '#/definitions/model.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      tags:
+      - Login
+  /api/board/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: 后台删除一个留言
+      parameters:
+      - description: 要删除留言的id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 后台删除留言
+      tags:
+      - Board
+  /api/category:
+    get:
+      consumes:
+      - application/json
+      description: 查看所有类别
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 后台查看类别列表
+      tags:
+      - Category
+  /api/category/{id}:
+    put:
+      consumes:
+      - application/json
+      description: 后台编辑一个动态
+      parameters:
+      - description: 要编辑分类的id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: 编辑分类
+        in: body
+        name: category
+        schema:
+          $ref: '#/definitions/model.Category'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 后台更新动态
+      tags:
+      - Life
+  /api/category/add:
+    post:
+      consumes:
+      - application/json
+      description: 后台添加一个分类
+      parameters:
+      - description: 添加动态
+        in: body
+        name: category
+        schema:
+          $ref: '#/definitions/model.Category'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 后台添加分类
+      tags:
+      - Category
+  /api/category/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: 后台删除一个分类
+      parameters:
+      - description: 要删除分类的id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 后台删除分类
+      tags:
+      - Category
+  /api/categoryid/{name}:
+    get:
+      consumes:
+      - application/json
+      description: 根据name检索id
+      parameters:
+      - description: 要检索的name
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 后台根据name检索
+      tags:
+      - Category
+  /api/comment/{id}:
+    get:
+      consumes:
+      - application/json
+      description: 后台查看动态评论
+      parameters:
+      - description: 文章id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: 分页尺寸
+        in: query
+        name: pagesize
+        required: true
+        type: integer
+      - description: 页码
+        in: query
+        name: pagenum
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 后台查看动态评论列表
+      tags:
+      - ArtComment
+  /api/comment/add:
+    post:
+      consumes:
+      - application/json
+      description: 前台添加一个文章评论
+      parameters:
+      - description: 添加文章评论
+        in: body
+        name: artcomment
+        schema:
+          $ref: '#/definitions/model.ArtComment'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 前台添加文章评论
+      tags:
+      - ArtComment
+  /api/comment/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: 后台删除一个文章评论
+      parameters:
+      - description: 要删除的动态评论id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 后台删除文章评论
+      tags:
+      - ArtComment
+  /api/life:
+    get:
+      consumes:
+      - application/json
+      description: 前后台通用查看所有动态
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 查看所有动态
+      tags:
+      - Life
+  /api/life/{id}:
+    get:
+      consumes:
+      - application/json
+      description: 前台查看动态内容
+      parameters:
+      - description: 要查看的id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 前台查看动态内容
+      tags:
+      - Life
+  /api/life/add:
+    post:
+      consumes:
+      - application/json
+      description: 后台添加一个动态
+      parameters:
+      - description: 添加动态
+        in: body
+        name: life
+        schema:
+          $ref: '#/definitions/model.Life'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 后台添加动态
+      tags:
+      - Life
+  /api/life/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: 后台删除一个动态
+      parameters:
+      - description: 要删除动态的id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 后台删除动态
+      tags:
+      - Life
+  /api/life/edit/{id}:
+    put:
+      consumes:
+      - application/json
+      description: 后台编辑一个动态
+      parameters:
+      - description: 要编辑动态的id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: 编辑动态
+        in: body
+        name: life
+        schema:
+          $ref: '#/definitions/model.Life'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 后台更新动态
+      tags:
+      - Life
+  /api/life/search:
+    get:
+      consumes:
+      - application/json
+      description: 根据标题检索动态
+      parameters:
+      - description: 查找动态
+        in: query
+        name: title
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 检索动态
+      tags:
+      - Life
+  /api/lifecomment/{id}:
+    get:
+      consumes:
+      - application/json
+      description: 前台查看动态评论
+      parameters:
+      - description: 分页尺寸
+        in: query
+        name: pagesize
+        required: true
+        type: integer
+      - description: 页码
+        in: query
+        name: pagenum
+        required: true
+        type: integer
+      - description: life的id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 前台查看动态评论
+      tags:
+      - LifeComment
+  /api/lifecomment/add:
+    post:
+      consumes:
+      - application/json
+      description: 前台添加一个生活评论
+      parameters:
+      - description: 添加生活评论
+        in: body
+        name: lifecomment
+        schema:
+          $ref: '#/definitions/model.LifeComment'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 前台添加生活评论
+      tags:
+      - LifeComment
+  /api/lifecomment/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: 后台删除一个动态评论
+      parameters:
+      - description: 要删除的动态评论id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 后台删除动态评论
+      tags:
+      - Life
+  /api/lifecomment/list:
+    get:
+      consumes:
+      - application/json
+      description: 后台查看动态评论
+      parameters:
+      - description: 分页尺寸
+        in: query
+        name: pagesize
+        required: true
+        type: integer
+      - description: 页码
+        in: query
+        name: pagenum
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 后台查看动态评论列表
+      tags:
+      - LifeComment
+  /api/project:
+    get:
+      consumes:
+      - application/json
+      description: 前后台通用查看所有项目
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 查看所有项目
+      tags:
+      - Project
+  /api/project/{id}:
+    get:
+      consumes:
+      - application/json
+      description: 前台查看项目内容
+      parameters:
+      - description: 要查看项目的id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 前台查看项目内容
+      tags:
+      - Project
+  /api/project/add:
+    post:
+      consumes:
+      - application/json
+      description: 后台添加一个项目
+      parameters:
+      - description: 添加项目
+        in: body
+        name: project
+        schema:
+          $ref: '#/definitions/model.Project'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 后台添加项目
+      tags:
+      - Project
+  /api/project/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: 后台删除一个项目
+      parameters:
+      - description: 删除项目的id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 后台删除项目
+      tags:
+      - Project
+  /api/project/edit/{id}:
+    put:
+      consumes:
+      - application/json
+      description: 后台编辑一个项目
+      parameters:
+      - description: 要编辑项目的id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: 编辑项目
+        in: body
+        name: project
+        schema:
+          $ref: '#/definitions/model.Project'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 后台更新项目
+      tags:
+      - Project
+  /api/project/search:
+    get:
+      consumes:
+      - application/json
+      description: 根据标题检索动态
+      parameters:
+      - description: 查找动态
+        in: query
+        name: title
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.Reponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/model.Reponse'
+      summary: 检索动态
+      tags:
+      - Project
+swagger: "2.0"
