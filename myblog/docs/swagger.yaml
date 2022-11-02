@@ -1,4 +1,3 @@
-basePath: /
 definitions:
   model.ArtComment:
     properties:
@@ -105,49 +104,6 @@ info:
   title: myblog gin+gorm
   version: "1.0"
 paths:
-  /api/artcomment/{id}:
-    get:
-      consumes:
-      - application/json
-      description: 后台查看动态评论
-      parameters:
-      - description: id
-        in: path
-        name: id
-        required: true
-        type: integer
-      - description: 分页尺寸
-        in: query
-        name: pagesize
-        required: true
-        type: integer
-      - description: 页码
-        in: query
-        name: pagenum
-        required: true
-        type: integer
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/model.Reponse'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/model.Reponse'
-        "404":
-          description: Not Found
-          schema:
-            $ref: '#/definitions/model.Reponse'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/model.Reponse'
-      summary: 后台查看动态评论列表
-      tags:
-      - ArtComment
   /api/artcomment/list:
     get:
       consumes:
@@ -172,6 +128,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model.Reponse'
+      security:
+      - ApiKeyAuth: []
       summary: 查看所有文章评论
       tags:
       - ArtComment
@@ -238,6 +196,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model.Reponse'
+      security:
+      - ApiKeyAuth: []
       summary: 后台添加文章
       tags:
       - Article
@@ -271,6 +231,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model.Reponse'
+      security:
+      - ApiKeyAuth: []
       summary: 后台删除文章
       tags:
       - Article
@@ -309,6 +271,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model.Reponse'
+      security:
+      - ApiKeyAuth: []
       summary: 后台更新文章
       tags:
       - Article
@@ -374,6 +338,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model.Reponse'
+      security:
+      - ApiKeyAuth: []
       summary: 检索文章
       tags:
       - Article
@@ -521,6 +487,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model.Reponse'
+      security:
+      - ApiKeyAuth: []
       summary: 后台删除留言
       tags:
       - Board
@@ -586,6 +554,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model.Reponse'
+      security:
+      - ApiKeyAuth: []
       summary: 后台编辑分类
       tags:
       - Category
@@ -619,6 +589,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model.Reponse'
+      security:
+      - ApiKeyAuth: []
       summary: 后台添加分类
       tags:
       - Category
@@ -652,6 +624,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model.Reponse'
+      security:
+      - ApiKeyAuth: []
       summary: 后台删除分类
       tags:
       - Category
@@ -685,6 +659,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model.Reponse'
+      security:
+      - ApiKeyAuth: []
       summary: 后台根据name检索
       tags:
       - Category
@@ -692,7 +668,7 @@ paths:
     get:
       consumes:
       - application/json
-      description: 后台查看动态评论
+      description: 前台查看文章评论
       parameters:
       - description: 文章id
         in: path
@@ -728,7 +704,7 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model.Reponse'
-      summary: 后台查看动态评论列表
+      summary: 前台查看文章评论列表
       tags:
       - ArtComment
   /api/comment/add:
@@ -794,6 +770,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model.Reponse'
+      security:
+      - ApiKeyAuth: []
       summary: 后台删除文章评论
       tags:
       - ArtComment
@@ -887,6 +865,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model.Reponse'
+      security:
+      - ApiKeyAuth: []
       summary: 后台添加动态
       tags:
       - Life
@@ -920,6 +900,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model.Reponse'
+      security:
+      - ApiKeyAuth: []
       summary: 后台删除动态
       tags:
       - Life
@@ -958,6 +940,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model.Reponse'
+      security:
+      - ApiKeyAuth: []
       summary: 后台更新动态
       tags:
       - Life
@@ -991,6 +975,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model.Reponse'
+      security:
+      - ApiKeyAuth: []
       summary: 检索动态
       tags:
       - Life
@@ -1100,6 +1086,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model.Reponse'
+      security:
+      - ApiKeyAuth: []
       summary: 后台删除动态评论
       tags:
       - Life
@@ -1265,6 +1253,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model.Reponse'
+      security:
+      - ApiKeyAuth: []
       summary: 后台添加项目
       tags:
       - Project
@@ -1298,6 +1288,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model.Reponse'
+      security:
+      - ApiKeyAuth: []
       summary: 后台删除项目
       tags:
       - Project
@@ -1336,6 +1328,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model.Reponse'
+      security:
+      - ApiKeyAuth: []
       summary: 后台更新项目
       tags:
       - Project
@@ -1343,9 +1337,9 @@ paths:
     get:
       consumes:
       - application/json
-      description: 根据标题检索动态
+      description: 根据标题检索项目
       parameters:
-      - description: 查找动态
+      - description: 查找项目
         in: query
         name: title
         required: true
@@ -1369,7 +1363,14 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model.Reponse'
-      summary: 检索动态
+      security:
+      - ApiKeyAuth: []
+      summary: 检索项目
       tags:
       - Project
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
 swagger: "2.0"

@@ -15,8 +15,10 @@ import (
 // @contact.name go-swagger帮助文档
 // @contact.url https://github.com/swaggo/swag/blob/master/README_zh-CN.md
 // @host localhost:8000
+// @securityDefinitions.apikey ApiKeyAuth
+// @in header
+// @name Authorization
 // @Basepath /
-
 func main() {
 
 	router.RouterStart()

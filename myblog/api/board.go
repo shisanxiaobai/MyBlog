@@ -45,6 +45,7 @@ func AddBoard(c *gin.Context) {
 // @Failure 404 {object} model.Reponse
 // @Failure 500 {object} model.Reponse
 // @Router /api/board/delete/{id} [delete]
+// @Security ApiKeyAuth
 func DeleteBoard(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	code := service.DeleteBoard(id)

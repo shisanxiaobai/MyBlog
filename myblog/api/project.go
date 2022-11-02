@@ -14,17 +14,18 @@ import (
 
 //项目模块api 下面注释用于swagger生成接口文档
 
-// @Summary 检索动态
-// @Description 根据标题检索动态
+// @Summary 检索项目
+// @Description 根据标题检索项目
 // @Tags	Project
 // @Accept  json
 // @Produce json
-// @Param 	title query string true "查找动态"
+// @Param 	title query string true "查找项目"
 // @Success 200 {object} model.Reponse
 // @Failure 400 {object} model.Reponse
 // @Failure 404 {object} model.Reponse
 // @Failure 500 {object} model.Reponse
 // @Router /api/project/search [get]
+// @Security ApiKeyAuth
 func SearchProject(c *gin.Context) {
 	title := c.Query("title")
 	data, code := service.SearchProject(title)
@@ -46,6 +47,7 @@ func SearchProject(c *gin.Context) {
 // @Failure 404 {object} model.Reponse
 // @Failure 500 {object} model.Reponse
 // @Router /api/project/add [post]
+// @Security ApiKeyAuth
 func AddProject(c *gin.Context) {
 	var data model.Project
 	_ = c.ShouldBind(&data)
@@ -67,6 +69,7 @@ func AddProject(c *gin.Context) {
 // @Failure 404 {object} model.Reponse
 // @Failure 500 {object} model.Reponse
 // @Router /api/project/delete/{id} [delete]
+// @Security ApiKeyAuth
 func DeleteProject(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	code := service.DeleteProject(id)
@@ -88,6 +91,7 @@ func DeleteProject(c *gin.Context) {
 // @Failure 404 {object} model.Reponse
 // @Failure 500 {object} model.Reponse
 // @Router /api/project/edit/{id} [put]
+// @Security ApiKeyAuth
 func EditProject(c *gin.Context) {
 	var data model.Project
 	id, _ := strconv.Atoi(c.Param("id"))

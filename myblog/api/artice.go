@@ -24,6 +24,7 @@ import (
 // @Failure 404 {object} model.Reponse
 // @Failure 500 {object} model.Reponse
 // @Router /api/article/search [get]
+// @Security ApiKeyAuth
 func SearchArticle(c *gin.Context) {
 	title := c.Query("title")
 	data, code := service.SearchArticle(title)
@@ -45,6 +46,7 @@ func SearchArticle(c *gin.Context) {
 // @Failure 404 {object} model.Reponse
 // @Failure 500 {object} model.Reponse
 // @Router /api/article/add [post]
+// @Security ApiKeyAuth
 func AddArticle(c *gin.Context) {
 	var data model.Article
 	_ = c.ShouldBind(&data)
@@ -68,6 +70,7 @@ func AddArticle(c *gin.Context) {
 // @Failure 404 {object} model.Reponse
 // @Failure 500 {object} model.Reponse
 // @Router /api/article/delete/{id} [delete]
+// @Security ApiKeyAuth
 func DeleteArticle(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 
@@ -91,6 +94,7 @@ func DeleteArticle(c *gin.Context) {
 // @Failure 404 {object} model.Reponse
 // @Failure 500 {object} model.Reponse
 // @Router /api/article/edit/{id} [put]
+// @Security ApiKeyAuth
 func EditArticle(c *gin.Context) {
 	var data model.Article
 	id, _ := strconv.Atoi(c.Param("id"))

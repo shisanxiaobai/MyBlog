@@ -45,6 +45,7 @@ func AddComment(c *gin.Context) {
 // @Failure 404 {object} model.Reponse
 // @Failure 500 {object} model.Reponse
 // @Router /api/comment/delete/{id} [delete]
+// @Security ApiKeyAuth
 func DeleteComment(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	code := service.DeleteComment(id)
@@ -54,8 +55,8 @@ func DeleteComment(c *gin.Context) {
 	})
 }
 
-// @Summary 后台查看动态评论列表
-// @Description 后台查看动态评论
+// @Summary 前台查看文章评论列表
+// @Description 前台查看文章评论
 // @Tags	ArtComment
 // @Accept  json
 // @Produce json
@@ -91,6 +92,7 @@ func GetCommentInfo(c *gin.Context) {
 // @Failure 404 {object} model.Reponse
 // @Failure 500 {object} model.Reponse
 // @Router /api/artcomment/list [get]
+// @Security ApiKeyAuth
 func GetAllComment(c *gin.Context) {
 	data, code := service.GetAllComment()
 	c.JSON(http.StatusOK, gin.H{
@@ -100,28 +102,3 @@ func GetAllComment(c *gin.Context) {
 	})
 }
 
-// @Summary 后台查看动态评论列表
-// @Description 后台查看动态评论
-// @Tags	ArtComment
-// @Accept  json
-// @Produce json
-// @Param  	id path int true "id"
-// @Param 	pagesize query int true "分页尺寸"
-// @Param 	pagenum query int true "页码"
-// @Success 200 {object} model.Reponse
-// @Failure 400 {object} model.Reponse
-// @Failure 404 {object} model.Reponse
-// @Failure 500 {object} model.Reponse
-// @Router /api/artcomment/{id} [get]
-func GetArtComment(c *gin.Context) {
-	id, _ := strconv.Atoi(c.Param("id"))
-	pageSize, _ := strconv.Atoi(c.Query("pagesize"))
-	pageNum, _ := strconv.Atoi(c.Query("pagenum"))
-
-	data, code := service.GetCommentInfo(id, pageSize, pageNum)
-	c.JSON(http.StatusOK, gin.H{
-		"status":  code,
-		"data":    data,
-		"message": errmsg.GetErrMsg(code),
-	})
-}

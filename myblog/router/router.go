@@ -76,7 +76,7 @@ func RouterStart() {
 	//后台文章评论模块
 	auth.DELETE("comment/delete/:id", api.DeleteComment)
 	auth.GET("artcomment/list", api.GetAllComment)
-	auth.GET("artcomment/:id", api.GetArtComment)
+	
 
 	//后台内动态模块路由
 	auth.POST("life/add", api.AddLife)

@@ -24,6 +24,7 @@ import (
 // @Failure 404 {object} model.Reponse
 // @Failure 500 {object} model.Reponse
 // @Router /api/category/add [post]
+// @Security ApiKeyAuth
 func AddCategory(c *gin.Context) {
 	var data model.Category
 	_ = c.ShouldBind(&data)
@@ -45,6 +46,7 @@ func AddCategory(c *gin.Context) {
 // @Failure 404 {object} model.Reponse
 // @Failure 500 {object} model.Reponse
 // @Router /api/category/delete/{id} [delete]
+// @Security ApiKeyAuth
 func DelCategory(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	code := service.DelteCategory(id)
@@ -66,6 +68,7 @@ func DelCategory(c *gin.Context) {
 // @Failure 404 {object} model.Reponse
 // @Failure 500 {object} model.Reponse
 // @Router /api/category/{id} [put]
+// @Security ApiKeyAuth
 func EditCategory(c *gin.Context) {
 	var data model.Category
 	id, _ := strconv.Atoi(c.Param("id"))
@@ -88,6 +91,7 @@ func EditCategory(c *gin.Context) {
 // @Failure 404 {object} model.Reponse
 // @Failure 500 {object} model.Reponse
 // @Router /api/categoryid/{name} [get]
+// @Security ApiKeyAuth
 func GetCategoryId(c *gin.Context) {
 	name := c.Param("name")
 	code, id := service.GetCategoryId(name)

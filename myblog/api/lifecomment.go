@@ -45,6 +45,7 @@ func AddLcomment(c *gin.Context) {
 // @Failure 404 {object} model.Reponse
 // @Failure 500 {object} model.Reponse
 // @Router /api/lifecomment/delete/{id} [delete]
+// @Security ApiKeyAuth
 func DeleteLcomment(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	code := service.DeleteLcomment(id)

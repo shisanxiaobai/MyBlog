@@ -24,6 +24,11 @@ const docTemplate = `{
     "paths": {
         "/api/artcomment/list": {
             "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "后台查看所有文章评论",
                 "consumes": [
                     "application/json"
@@ -63,72 +68,13 @@ const docTemplate = `{
                 }
             }
         },
-        "/api/artcomment/{id}": {
-            "get": {
-                "description": "后台查看动态评论",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "ArtComment"
-                ],
-                "summary": "后台查看动态评论列表",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "id",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "integer",
-                        "description": "分页尺寸",
-                        "name": "pagesize",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "type": "integer",
-                        "description": "页码",
-                        "name": "pagenum",
-                        "in": "query",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model.Reponse"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/model.Reponse"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/model.Reponse"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/model.Reponse"
-                        }
-                    }
-                }
-            }
-        },
         "/api/article/add": {
             "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "后台添加一个文章",
                 "consumes": [
                     "application/json"
@@ -180,6 +126,11 @@ const docTemplate = `{
         },
         "/api/article/delete/{id}": {
             "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "后台删除一个文章",
                 "consumes": [
                     "application/json"
@@ -230,6 +181,11 @@ const docTemplate = `{
         },
         "/api/article/edit/{id}": {
             "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "后台编辑一个动态",
                 "consumes": [
                     "application/json"
@@ -337,6 +293,11 @@ const docTemplate = `{
         },
         "/api/article/search": {
             "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "根据标题检索文章",
                 "consumes": [
                     "application/json"
@@ -609,6 +570,11 @@ const docTemplate = `{
         },
         "/api/board/delete/{id}": {
             "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "后台删除一个留言",
                 "consumes": [
                     "application/json"
@@ -700,6 +666,11 @@ const docTemplate = `{
         },
         "/api/category/add": {
             "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "后台添加一个分类",
                 "consumes": [
                     "application/json"
@@ -751,6 +722,11 @@ const docTemplate = `{
         },
         "/api/category/delete/{id}": {
             "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "后台删除一个分类",
                 "consumes": [
                     "application/json"
@@ -801,6 +777,11 @@ const docTemplate = `{
         },
         "/api/category/{id}": {
             "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "后台编辑一个分类",
                 "consumes": [
                     "application/json"
@@ -859,6 +840,11 @@ const docTemplate = `{
         },
         "/api/categoryid/{name}": {
             "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "根据name检索id",
                 "consumes": [
                     "application/json"
@@ -960,6 +946,11 @@ const docTemplate = `{
         },
         "/api/comment/delete/{id}": {
             "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "后台删除一个文章评论",
                 "consumes": [
                     "application/json"
@@ -1010,7 +1001,7 @@ const docTemplate = `{
         },
         "/api/comment/{id}": {
             "get": {
-                "description": "后台查看动态评论",
+                "description": "前台查看文章评论",
                 "consumes": [
                     "application/json"
                 ],
@@ -1020,7 +1011,7 @@ const docTemplate = `{
                 "tags": [
                     "ArtComment"
                 ],
-                "summary": "后台查看动态评论列表",
+                "summary": "前台查看文章评论列表",
                 "parameters": [
                     {
                         "type": "integer",
@@ -1115,6 +1106,11 @@ const docTemplate = `{
         },
         "/api/life/add": {
             "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "后台添加一个动态",
                 "consumes": [
                     "application/json"
@@ -1166,6 +1162,11 @@ const docTemplate = `{
         },
         "/api/life/delete/{id}": {
             "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "后台删除一个动态",
                 "consumes": [
                     "application/json"
@@ -1216,6 +1217,11 @@ const docTemplate = `{
         },
         "/api/life/edit/{id}": {
             "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "后台编辑一个动态",
                 "consumes": [
                     "application/json"
@@ -1274,6 +1280,11 @@ const docTemplate = `{
         },
         "/api/life/search": {
             "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "根据标题检索动态",
                 "consumes": [
                     "application/json"
@@ -1425,6 +1436,11 @@ const docTemplate = `{
         },
         "/api/lifecomment/delete/{id}": {
             "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "后台删除一个动态评论",
                 "consumes": [
                     "application/json"
@@ -1689,6 +1705,11 @@ const docTemplate = `{
         },
         "/api/project/add": {
             "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "后台添加一个项目",
                 "consumes": [
                     "application/json"
@@ -1740,6 +1761,11 @@ const docTemplate = `{
         },
         "/api/project/delete/{id}": {
             "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "后台删除一个项目",
                 "consumes": [
                     "application/json"
@@ -1790,6 +1816,11 @@ const docTemplate = `{
         },
         "/api/project/edit/{id}": {
             "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "后台编辑一个项目",
                 "consumes": [
                     "application/json"
@@ -1848,7 +1879,12 @@ const docTemplate = `{
         },
         "/api/project/search": {
             "get": {
-                "description": "根据标题检索动态",
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "根据标题检索项目",
                 "consumes": [
                     "application/json"
                 ],
@@ -1858,11 +1894,11 @@ const docTemplate = `{
                 "tags": [
                     "Project"
                 ],
-                "summary": "检索动态",
+                "summary": "检索项目",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "查找动态",
+                        "description": "查找项目",
                         "name": "title",
                         "in": "query",
                         "required": true
@@ -2088,6 +2124,13 @@ const docTemplate = `{
                 }
             }
         }
+    },
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
     }
 }`
 
@@ -2095,7 +2138,7 @@ const docTemplate = `{
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
 	Host:             "localhost:8000",
-	BasePath:         "/",
+	BasePath:         "",
 	Schemes:          []string{},
 	Title:            "myblog gin+gorm",
 	Description:      "gin+gorm+jwt+cors+viper等等",

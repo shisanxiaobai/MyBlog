@@ -25,6 +25,7 @@ import (
 // @Failure 404 {object} model.Reponse
 // @Failure 500 {object} model.Reponse
 // @Router /api/life/search [get]
+// @Security ApiKeyAuth
 func SearchLife(c *gin.Context) {
 	title := c.Query("title")
 	data, code := service.SearchLife(title)
@@ -46,6 +47,7 @@ func SearchLife(c *gin.Context) {
 // @Failure 404 {object} model.Reponse
 // @Failure 500 {object} model.Reponse
 // @Router /api/life/add [post]
+// @Security ApiKeyAuth
 func AddLife(c *gin.Context) {
 	var data model.Life
 	_ = c.ShouldBind(&data)
@@ -67,6 +69,7 @@ func AddLife(c *gin.Context) {
 // @Failure 404 {object} model.Reponse
 // @Failure 500 {object} model.Reponse
 // @Router /api/life/delete/{id} [delete]
+// @Security ApiKeyAuth
 func DeleteLife(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	code := service.DeleteLife(id)
@@ -88,6 +91,7 @@ func DeleteLife(c *gin.Context) {
 // @Failure 404 {object} model.Reponse
 // @Failure 500 {object} model.Reponse
 // @Router /api/life/edit/{id} [put]
+// @Security ApiKeyAuth
 func EditLife(c *gin.Context) {
 	var data model.Life
 	id, _ := strconv.Atoi(c.Param("id"))
