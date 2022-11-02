@@ -33,6 +33,9 @@ go run main.go执行
 需要在windows下或者docker下安装mysql
 如果主机名不是localhost，需要修改config/config.ini并修改前端axios的baseURL后重新打包
 
+swagger导入依赖后，swag init初始化 进入路由界面即可
+授权token格式 Bearer+空格+登录返回reponse数据中token中的字符串
+
 ### 参与贡献
 
 Fork 本仓库
