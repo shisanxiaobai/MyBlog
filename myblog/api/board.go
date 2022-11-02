@@ -13,7 +13,7 @@ import (
 
 //留言板模块api 下面注释用于swagger生成接口文档
 
-// @Summar	添加留言
+// @Summary	添加留言
 // @Description 前台添加一个留言
 // @Tags	Board
 // @Accept  json

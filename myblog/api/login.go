@@ -15,7 +15,7 @@ import (
 
 //登录模块api 下面注释用于swagger生成接口文档
 
-// @Summar	登录
+// @Summary	登录
 // @Description 登录
 // @Tags	Login
 // @Accept  json
@@ -25,7 +25,7 @@ import (
 // @Failure 400 {object} model.Reponse
 // @Failure 404 {object} model.Reponse
 // @Failure 500 {object} model.Reponse
-// @Router /api/board/add [post]
+// @Router /api/login [post]
 func Login(c *gin.Context) {
 	var user model.User
 	_ = c.ShouldBind(&user)

@@ -558,7 +558,7 @@ const docTemplate = `{
         },
         "/api/board/add": {
             "post": {
-                "description": "登录",
+                "description": "前台添加一个留言",
                 "consumes": [
                     "application/json"
                 ],
@@ -566,16 +566,16 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Login"
+                    "Board"
                 ],
+                "summary": "添加留言",
                 "parameters": [
                     {
-                        "description": "登录",
-                        "name": "login",
+                        "description": "添加留言",
+                        "name": "board",
                         "in": "body",
-                        "required": true,
                         "schema": {
-                            "$ref": "#/definitions/model.User"
+                            "$ref": "#/definitions/model.Board"
                         }
                     }
                 ],
@@ -1564,6 +1564,58 @@ const docTemplate = `{
                         "name": "id",
                         "in": "path",
                         "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.Reponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.Reponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/model.Reponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model.Reponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "description": "登录",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Login"
+                ],
+                "summary": "登录",
+                "parameters": [
+                    {
+                        "description": "登录",
+                        "name": "login",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.User"
+                        }
                     }
                 ],
                 "responses": {
