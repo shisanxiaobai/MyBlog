@@ -801,7 +801,7 @@ const docTemplate = `{
         },
         "/api/category/{id}": {
             "put": {
-                "description": "后台编辑一个动态",
+                "description": "后台编辑一个分类",
                 "consumes": [
                     "application/json"
                 ],
@@ -809,9 +809,9 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Life"
+                    "Category"
                 ],
-                "summary": "后台更新动态",
+                "summary": "后台编辑分类",
                 "parameters": [
                     {
                         "type": "integer",

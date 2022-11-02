@@ -555,7 +555,7 @@ paths:
     put:
       consumes:
       - application/json
-      description: 后台编辑一个动态
+      description: 后台编辑一个分类
       parameters:
       - description: 要编辑分类的id
         in: path
@@ -586,9 +586,9 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/model.Reponse'
-      summary: 后台更新动态
+      summary: 后台编辑分类
       tags:
-      - Life
+      - Category
   /api/category/add:
     post:
       consumes:

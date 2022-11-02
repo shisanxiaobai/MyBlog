@@ -54,9 +54,9 @@ func DelCategory(c *gin.Context) {
 	})
 }
 
-// @Summary 后台更新动态
-// @Description 后台编辑一个动态
-// @Tags	Life
+// @Summary 后台编辑分类
+// @Description 后台编辑一个分类
+// @Tags	Category
 // @Accept  json
 // @Produce json
 // @Param 	id path int true "要编辑分类的id"

@@ -26,7 +26,7 @@ Vue.prototype.$http = axios
 Vue.mixin({
   methods: {
     changeTitle: function (title) {
-      document.title = `${title} - Yogen的博客`
+      document.title = `${title} - 十三小白的博客`
     },
   },
 })

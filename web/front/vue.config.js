@@ -7,5 +7,8 @@ module.exports = {
       return args
     })
   },
-  productionSourceMap: false
+  productionSourceMap: false,
+  devServer: {
+    disableHostCheck: true  // 加上这个配置内网穿透
+},
 }
