@@ -45,6 +45,7 @@ func init() {
 
 	// 获取通用数据库对象 sql.DB，然后使用其提供的功能
 	sqlDB, _ := db.DB()
+
 	// SetMaxIdleConns 用于设置连接池中空闲连接的最大数量。
 	sqlDB.SetMaxIdleConns(10)
 
@@ -53,6 +54,7 @@ func init() {
 
 	// SetConnMaxLifetime 设置了连接可复用的最大时间。
 	sqlDB.SetConnMaxLifetime(time.Hour)
+
 	//连接暴露的接口
 	DB = db
 }
