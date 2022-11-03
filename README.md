@@ -18,20 +18,24 @@
 
 修改config下的config.ini文件
 进入文件所在的文件夹，执行docker build -f Dockerfile -t myblog .
-执行 docker run -p 8000:8000 -d myblog
-前台网页访问localhost:8000，后台网页访问localhost:8000/admin
+执行 docker run -p 9000:9000 -d myblog
+前端需要安装node.js、npm、vue、vue-cli以及vue Router，插件库需要下载依赖npm install --legacy-peer-deps
+npm run serve运行后
+前台网页访问localhost:8080，后台网页访问localhost:8081/admin  (端口顺序跟启动顺序相关)
 
 #### 直接安装访问（需要配置go环境，并安装mysql：8.0.28，创建数据库myblog）：
 
 修改config.ini文件
 执行命令go mod tidy下载go依赖包
 go run main.go执行
-前台网页访问localhost:8000，后台网页访问localhost:8000/admin
+前端需要安装node.js、npm、vue、vue-cli以及vue Router，插件库需要下载依赖npm install --legacy-peer-deps
+npm run serve运行后
+前台网页访问localhost:8080，后台网页访问localhost:8081/admin  (端口顺序跟启动顺序相关)
 
 ### 使用说明
 
 需要在windows下或者docker下安装mysql
-如果主机名不是localhost，需要修改config/config.ini并修改前端axios的baseURL后重新打包
+如果主机名不是localhost，端口号想修改，需要修改config/config.ini并修改前端axios的URL后重新打包
 
 swagger导入依赖后，swag init初始化 进入路由界面即可http://localhost:8000/swagger/index.html
 授权token格式 Bearer+空格+登录返回reponse数据中token中的字符串
