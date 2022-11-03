@@ -40,7 +40,7 @@ func init() {
 	if err != nil {
 		log.Fatal("数据库连接失败", err)
 	}
-	//迁移数据表，若没有此表则自定创建
+	//迁移数据表，若没有此表则自动创建
 	db.AutoMigrate(&model.Project{}, &model.Article{}, &model.Category{}, &model.Board{}, &model.ArtComment{}, &model.LifeComment{}, &model.Life{}, &model.Project{})
 
 	// 获取通用数据库对象 sql.DB，然后使用其提供的功能
