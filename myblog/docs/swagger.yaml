@@ -93,7 +93,7 @@ definitions:
       username:
         type: string
     type: object
-host: localhost:8000
+host: localhost:9000
 info:
   contact:
     name: go-swagger帮助文档
