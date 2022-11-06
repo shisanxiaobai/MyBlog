@@ -7,14 +7,14 @@ ENV GO111MODULE=on \
     GOARCH=amd64 
 
 #工作目录
-WORKDIR /project/go-docker/
+WORKDIR /project/go-docker/myblog
 
 #下载依赖
 COPY go.* ./
 RUN go mod download
 #编译
 COPY . .
-RUN go build -o /project/go-docker/build/myapp .
+RUN go build -o /project/go-docker/myblog/build/myapp .
 
 EXPOSE 9000
-ENTRYPOINT ["/project/go-docker/build/myapp"]
+ENTRYPOINT ["/project/go-docker/my/blog/build/myapp"]

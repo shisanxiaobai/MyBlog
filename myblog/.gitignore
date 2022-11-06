@@ -8,6 +8,8 @@ log/
 # Other files and folders
 .settings/
 .exe
+.log
+
 # Executables
 *.swf
 *.air
