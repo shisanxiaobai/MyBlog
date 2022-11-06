@@ -37,7 +37,7 @@ npm run serve运行后
 需要在windows下或者docker下安装mysql
 如果主机名不是localhost，端口号想修改，需要修改config/config.ini并修改前端axios的URL后重新打包
 
-swagger导入依赖后，swag init初始化 进入路由界面即可http://localhost:8000/swagger/index.html
+swagger导入依赖后，swag init初始化 进入路由界面即可http://localhost:9000/swagger/index.html
 授权token格式 Bearer+空格+登录返回reponse数据中token中的字符串
 
 ### 参与贡献
