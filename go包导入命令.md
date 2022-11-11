@@ -24,7 +24,7 @@ go get go.mongodb.org/mongo-driver/mongo
 
 <**redis**>
 
-go get go.mongodb.org/mongo-driver/mongo
+go get github.com/go-redis/redis/v9
 
 <**gin**>
 
@@ -55,6 +55,10 @@ go get github.com/sirupsen/logrus
 go get github.com/lestrrat-go/file-rotatelogs
 
 go get github.com/rifflock/lfshook
+
+<**websocket**>
+
+go get github.com/gorilla/websocket
 
 <**captcha  验证码**>
 
@@ -90,6 +94,26 @@ swag init 生成文档
 <**protocol buffer (protobuf)**>
 
 go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+
+或者
+
+go get github.com/golang/protobuf/protoc-gen-go
+
+<**go-micro**>
+
+go get -u github.com/micro/micro
+
+go get -u github.com/micro/go-micro
+
+go get -u github.com/micro/protoc-gen-micro
+
+go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+
+go install github.com/micro/micro/v3/cmd/protoc-gen-micro@latest
+
+go install github.com/micro/micro/v3/cmd/protoc-gen-openapi@latest
 
 <**kafka 导入**>
 go get github.com/shopify/sarama
@@ -160,6 +184,10 @@ HttpStatus = {
 
 -------------------------------------------------------------------------------
 
+<**Vue**>
+
+npm install vue
+
 <**Vue Router**>
 
 npm install vue-router@4
@@ -172,8 +200,12 @@ npm install -g @vue/cli
 
 npm insrall axios
 
-<**vue下载依赖
-
-**>
+<**vue下载依赖**>
 
 npm install --legacy-peer-deps
+
+----------------------------------------------------------------------------------------
+
+<**cmd中文乱码解决**>
+
+CHCP 65001
