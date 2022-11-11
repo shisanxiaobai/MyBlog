@@ -17,4 +17,4 @@ COPY . .
 RUN go build -o /project/go-docker/myblog/build/myapp .
 
 EXPOSE 9000
-ENTRYPOINT ["/project/go-docker/my/blog/build/myapp"]
+ENTRYPOINT ["/project/go-docker/myblog/build/myapp"]
